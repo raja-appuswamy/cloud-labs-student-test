@@ -1,0 +1,24 @@
+{
+  "phase": "0",
+  "environment": {
+    "cloud_shell": true
+  },
+  "python": {
+    "version": "3.12.3",
+    "ok": true
+  },
+  "gcloud": {
+    "account": "raja.appuswamy@eurecom.fr",
+    "project": "eurecom-cloud-computing-lab",
+    "error": null
+  },
+  "docker": {
+    "version": "Docker version 29.6.1, build 8900f1d",
+    "present": true
+  },
+  "git": {
+    "remote": "https://github.com/raja-appuswamy/cloud-labs-student-test.git",
+    "is_github": true,
+    "slug": "raja-appuswamy/cloud-labs-student-test"
+  }
+}
