@@ -13,7 +13,7 @@
     "error": null
   },
   "docker": {
-    "version": "Docker version 29.6.1, build 8900f1d",
+    "version": "Docker version 29.6.2, build dfc4efb",
     "present": true
   },
   "git": {
