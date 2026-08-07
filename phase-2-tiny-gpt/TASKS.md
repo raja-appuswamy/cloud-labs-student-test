@@ -6,20 +6,27 @@ with a **GPU runtime**. Work through the tasks in order.
 
 ---
 
-## Task 1 — Implement the attention code and run the unit tests
+## Task 1 — Run the unit tests (implementing the model is optional)
 
-Fill the TODOs:
-- [attention_numpy.py](attention_numpy.py) — `attention_naive` (loops) and
-  `attention_vectorized` (matrix ops).
-- [model.py](model.py) — `scaled_dot_product_attention` (the transformer core).
-
-Run the offline unit tests (NumPy only — no GPU, no torch needed for these):
+`attention_numpy.py` and `model.py` already contain **working solutions**, so you can go
+straight to the tests. Set up and run them (NumPy only — no GPU, no torch needed here):
 
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt -r phase-2-tiny-gpt/requirements.txt
 python -m pytest phase-2-tiny-gpt/tests/test_units.py -p autograder.points -q
 ```
+
+**Optional (recommended for the ML practice):** implement the attention yourself. The
+[`templates/`](templates/) folder has skeleton versions with TODOs — `attention_naive` /
+`attention_vectorized` (the SIMD lesson) and `scaled_dot_product_attention`. Copy one over
+the working file and fill in the TODOs, then re-run the tests until they pass again:
+
+```bash
+cp templates/attention_numpy.py attention_numpy.py    # and/or templates/model.py
+```
+
+Everything from here on (Colab, training, upload, report) is **mandatory**.
 
 ---
 
@@ -77,7 +84,7 @@ and your model's public URL). Also write `submission/phase2_reflection.md` (~1 p
 
 ## Task 7 — Commit, push, confirm green CI
 
-Commit your filled `attention_numpy.py`, `model.py`, `submission/phase2_report.json`, and
+Commit `attention_numpy.py`, `model.py`, `submission/phase2_report.json`, and
 `submission/phase2_reflection.md`, then push. The **`autograde-phase-2`** workflow runs the
 NumPy tests + validates your public model + checks the report.
 
@@ -87,7 +94,7 @@ python -m pytest phase-2-tiny-gpt/tests -p autograder.points -q   # full public 
 
 ## Deliverables
 
-1. Filled `attention_numpy.py` and `model.py`.
+1. `attention_numpy.py` and `model.py` (the provided solution, or your own optional implementation).
 2. The completed **Colab notebook** (with outputs + the threading plot).
 3. `submission/phase2_report.json` and a **public** `model.safetensors` in Cloud Storage.
 4. `submission/phase2_reflection.md` — the 1-page "where does parallelism stop helping?".
@@ -95,20 +102,19 @@ python -m pytest phase-2-tiny-gpt/tests -p autograder.points -q   # full public 
 
 ## Grading rubric (100 pts)
 
+Only the **mandatory** work is graded — the provided model code is not.
+
 | Check | Points | Where |
 |---|---:|---|
-| `attention_naive` matches reference | 10 | public unit test |
-| `attention_vectorized` matches reference | 10 | public unit test |
-| naive and vectorized agree | 10 | public unit test |
-| output shape / convexity | 5 | public unit test |
-| uploaded model is a ~5M-param model | 10 | public (GCS header) |
-| architecture matches spec (embedding, layers, head) | 15 | public (GCS header) |
-| all measurements present (attn, threads, cpu/gpu) | 10 | public (report) |
-| parallelism helped (vectorized<naive, GPU<CPU) | 10 | public (report) |
-| training + sample + model URL recorded | 5 | public (report) |
-| model actually trained (final loss < 3.0) | 8 | **hidden** |
-| training metadata sane (params, steps, sample, sweep) | 7 | **hidden** |
+| model code works (attention) — *provided solution, optional to write* | 0 | ungraded smoke check |
+| uploaded model is a ~5M-param model | 15 | public (GCS header) |
+| architecture matches spec (embedding, layers, head) | 20 | public (GCS header) |
+| all measurements present (attn, threads, cpu/gpu) | 15 | public (report) |
+| parallelism helped (vectorized<naive, GPU<CPU) | 15 | public (report) |
+| training + sample + model URL recorded | 10 | public (report) |
+| model actually trained (final loss < 3.0) | 15 | **hidden** |
+| training metadata sane (params, steps, sample, sweep) | 10 | **hidden** |
 | **Total** | **100** | |
 
 The notebook and the 1-page reflection are assessed separately by the instructor. Public
-checks (85 pts) you can verify yourself once the notebook has produced the report + upload.
+checks (75 pts) you can verify yourself once the notebook has produced the report + upload.
