@@ -48,11 +48,17 @@ def parse_gcloud_config(raw: str) -> dict:
     Args:
         raw: the raw stdout string from the gcloud command (may be empty).
     """
-    # TODO: parse `raw` as JSON and return {"account": ..., "project": ...}
-    #       from the "core" section. Return empty strings if raw is empty or a
-    #       field is missing.
-    raise NotImplementedError("Phase 0: implement parse_gcloud_config()")
-
+    if not raw:
+        return {"account": "", "project": ""}
+    try:
+        data = json.loads(raw)
+        core = data.get("core", {})
+        return {
+            "account": core.get("account", ""),
+            "project": core.get("project", ""),
+        }
+    except (json.JSONDecodeError, AttributeError):
+        return {"account": "", "project": ""}
 
 def parse_repo_slug(remote_url: str) -> str:
     """Turn a GitHub remote URL into an ``owner/repo`` slug (no ``.git`` suffix).
@@ -67,9 +73,21 @@ def parse_repo_slug(remote_url: str) -> str:
     Args:
         remote_url: output of ``git remote get-url origin`` (may be empty).
     """
-    # TODO: return "owner/repo" for both the HTTPS and SSH forms shown above.
-    #       Strip any trailing ".git". Return "" if not a github.com URL.
-    raise NotImplementedError("Phase 0: implement parse_repo_slug()")
+    if not remote_url or "github.com" not in remote_url:
+        return ""
+
+    # Strip trailing .git if present
+    slug = remote_url
+    if slug.endswith(".git"):
+        slug = slug[:-4]
+
+    # Handle HTTPS vs SSH URL formats
+    if "github.com/" in slug:
+        return slug.split("github.com/")[-1]
+    elif "github.com:" in slug:
+        return slug.split("github.com:")[-1]
+
+    return ""
 
 
 # --------------------------------------------------------------------------- #
