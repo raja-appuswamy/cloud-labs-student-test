@@ -1,13 +1,8 @@
-# Student-side autograding CI for Phase 0.
+# Student-side autograding CI for Phase 4.
 #
-# Runs in YOUR OWN GitHub repo on every push. It re-runs the public tests against
-# your committed submission/phase0_report.json and prints your self-check score.
-# The green/red badge on your repo is part of the deliverable.
-#
-# This is the same pattern later (cloud) phases use — they add a step that
-# authenticates to YOUR GCP project and tests YOUR live deployment, so the
-# instructor never needs access to your cloud account.
-name: autograde-phase-0
+# The tests run entirely against the in-memory fake Firestore (offline) plus your committed
+# submission/phase4_report.json — no GCP credentials, no google-cloud-firestore needed here.
+name: autograde-phase-4
 
 on:
   push:
@@ -34,11 +29,9 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Runs the whole tests/ dir. In your repo that's the public tests only
-      # (test_units.py + test_report.py); there is no hidden test here to run.
-      - name: Run public autograder tests
+      - name: Run autograder tests (fake-Firestore units + report)
         run: >
-          python -m pytest phase-0-setup/tests
+          python -m pytest phase-4-firestore/tests
           -p autograder.points
           --results-json results.json
           -q
@@ -47,5 +40,5 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: phase-0-score
+          name: phase-4-score
           path: results.json
