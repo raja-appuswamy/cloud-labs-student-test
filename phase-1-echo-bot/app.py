@@ -41,12 +41,11 @@ def extract_message(args, json_body) -> str | None:
     msg = args.get("msg")
     if msg is not None:
         return msg
-    if json_body is not None or not isinstance(json_body, dict):
+    if json_body is None:
         return None
     msg = json_body.get("message")
     if msg is not None:
         return msg
-    return None
 
 
 # --------------------------------------------------------------------------- #
