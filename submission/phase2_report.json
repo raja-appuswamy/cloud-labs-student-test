@@ -1,0 +1,31 @@
+{
+  "phase": "2",
+  "environment": {
+    "colab": true
+  },
+  "attention": {
+    "naive_ms": 231.679,
+    "vectorized_ms": 0.916,
+    "speedup": 252.92
+  },
+  "threads": {
+    "1": 2379.337,
+    "2": 2041.388,
+    "4": 2172.078,
+    "8": 2441.459
+  },
+  "devices": {
+    "cpu_ms": 430014.0,
+    "gpu_ms": 13040.7,
+    "tpu_ms": null
+  },
+  "training": {
+    "steps": 2000,
+    "final_loss": 1.4582,
+    "param_count": 4935680
+  },
+  "sample": "\n\nBAPTISTA:\n\nYORK:\nHelp the satte there take the her imrictionce.\n\nISABALLA:\nThou shalts do her in modes; of my reven bless;\nPepatient, plive ave mothmad stand.\n\nROMEO:\nAnd tigrong; your give and learn",
+  "model": {
+    "gcs_url": "https://storage.googleapis.com/eurecom-cloud-computing-lab-eurecomgpt/model.safetensors"
+  }
+}
