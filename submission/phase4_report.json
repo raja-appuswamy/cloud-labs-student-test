@@ -1,0 +1,27 @@
+{
+  "phase": "4",
+  "chat_url": "https://chat-cyhfpmf5xa-uc.a.run.app",
+  "ui_url": "https://storage.googleapis.com/eurecom-cloud-computing-lab-eurecomgpt/index.html",
+  "before": {
+    "session_id": "grade-2ab27f",
+    "chat_replies": 3,
+    "instance": "ba87bc94",
+    "store": "memory",
+    "history_status": 200,
+    "message_count": 6
+  },
+  "sample": {
+    "question": "love and death",
+    "reply": " death thou tale.\n\nGLOUCESTER:\nI that we hear--never and that and duke.\n\nTRANIS:",
+    "retrieved": [
+      45,
+      26,
+      33
+    ]
+  },
+  "after": {
+    "instance": null,
+    "history_status": 404,
+    "message_count": 0
+  }
+}
